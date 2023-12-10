@@ -1,2 +1,2 @@
-# WatchStreaming
-For testing our watch data streaming
+# iOS-Neuro-Mapping
+This is all of the code that we have contributed
