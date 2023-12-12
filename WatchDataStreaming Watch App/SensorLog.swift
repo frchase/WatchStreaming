@@ -18,7 +18,6 @@ class SensorLogManager: NSObject, ObservableObject {
     @Published var gyrX = 0.0
     @Published var gyrY = 0.0
     @Published var gyrZ = 0.0
-    var i = 0
     
     private var samplingFrequency = 30.0
     var timer = Timer()
@@ -28,6 +27,7 @@ class SensorLogManager: NSObject, ObservableObject {
         self.motionManager = CMMotionManager()
     }
     
+    /// Computed sensor data
     var currentSensorData: [String: Any] {
         return [
             "accX": accX,
@@ -39,6 +39,7 @@ class SensorLogManager: NSObject, ObservableObject {
         ]
     }
     
+    /// Update computed currentSensorData with the acceleration and rotationRate x, y, z values and sends data to iPhone
     @objc private func update() {
         
         if let data = motionManager?.accelerometerData {
@@ -64,9 +65,9 @@ class SensorLogManager: NSObject, ObservableObject {
             self.gyrZ = Double.nan
         }
         sendDataToiPhone()
-        //print("accelerometer: (\(self.accX), \(self.accY), \(self.accZ)), gyroscope: (\(self.gyrX), \(self.gyrY), \(self.gyrZ))")
     }
     
+    /// Starts the watch Accelerometer and Gyroscope
     func startUpdate(_ sampleFreq: Double) {
         if motionManager!.isDeviceMotionAvailable {
             motionManager?.startAccelerometerUpdates()
@@ -82,6 +83,7 @@ class SensorLogManager: NSObject, ObservableObject {
                            repeats: true)
     }
     
+    /// Stops the timer and watch Accelerometer and Gyroscope
     func stopUpdate() {
         self.timer.invalidate()
         
@@ -91,13 +93,12 @@ class SensorLogManager: NSObject, ObservableObject {
         }
     }
     
+    /// Sends watch Accelerometer and Gyroscope data to iPhone
     private func sendDataToiPhone() {
         if WCSession.default.isReachable {
-            i += 1
             WCSession.default.sendMessage(currentSensorData, replyHandler: nil, errorHandler: { error in
                 print("Error sending message to iPhone: \(error.localizedDescription)")
             })
         }
-        print(i)
     }
 }

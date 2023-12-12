@@ -13,8 +13,9 @@ struct ContentView: View {
     @ObservedObject var sensorLogger = SensorLogManager()
 
     var body: some View {
+        /// Activates the session for sending the data to iPhone and the display of the data on watch
         VStack {
-            Button(action: {
+            Button {
                 self.logStarting.toggle()
 
                 if self.logStarting {
@@ -22,8 +23,7 @@ struct ContentView: View {
                 } else {
                     self.sensorLogger.stopUpdate()
                 }
-                self.sendDataToiPhone()
-            }) {
+            } label: {
                 Text(self.logStarting ? "Pause" : "Start")
                     .padding(EdgeInsets(top: 10, leading: 30, bottom: 10, trailing: 30))
                     .background(self.logStarting ? Color.red : Color.green)
@@ -31,66 +31,18 @@ struct ContentView: View {
                     .cornerRadius(10)
             }
         }
+        /// Displays Gyroscope and Accelerometer data
         VStack {
-            VStack {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(Color.blue)
-                    Text("Accelerometer")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                }
-                .padding(.horizontal)
-                HStack {
-                    Text(String(format: "%.2f", self.sensorLogger.accX))
-                    Spacer()
-                    Text(String(format: "%.2f", self.sensorLogger.accY))
-                    Spacer()
-                    Text(String(format: "%.2f", self.sensorLogger.accZ))
-                }.padding(.horizontal)
-            }
-            
-            VStack {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(Color.blue)
-                    Text("Gyroscope")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                }
-                HStack {
-                    Text(String(format: "%.2f", self.sensorLogger.gyrX))
-                    Spacer()
-                    Text(String(format: "%.2f", self.sensorLogger.gyrY))
-                    Spacer()
-                    Text(String(format: "%.2f", self.sensorLogger.gyrZ))
-                }.padding(.horizontal)
-            }
+            DataDisplayView()
         }
         .onAppear {
+            // On appear of this view check if the delegate is supported
             if WCSession.isSupported() {
                 let session = WCSession.default
                 session.delegate = WatchConnectivityDelegate.shared
                 session.activate()
                 // Send initial data to iPhone when the view appears
             }
-        }
-    }
-    
-    private func sendDataToiPhone() {
-        if WCSession.default.isReachable {
-            let sensorData = [
-                "accX": self.sensorLogger.accX,
-                "accY": self.sensorLogger.accY,
-                "accZ": self.sensorLogger.accZ,
-                "gyrX": self.sensorLogger.gyrX,
-                "gyrY": self.sensorLogger.gyrY,
-                "gyrZ": self.sensorLogger.gyrZ,
-            ]
-
-            WCSession.default.sendMessage(sensorData, replyHandler: nil, errorHandler: { error in
-                print("Error sending message to iPhone: \(error.localizedDescription)")
-            })
         }
     }
 }

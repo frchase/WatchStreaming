@@ -23,18 +23,16 @@ class WatchConnectivityDelegate: NSObject, WCSessionDelegate {
     
     static let shared = WatchConnectivityDelegate()
 
-    // Handle the received message from the Watch
+    /// Handle the received message from the Watch
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-            // Process the received data on the iPhone side
-            print("Received message on iPhone: \(message)")
+        // Process the received data on the iPhone side
+        print("Received message on iPhone: \(message)")
 
-            if let data = message as? [String: Double] {
-                // Post a notification to update the ContentView
-                NotificationCenter.default.post(name: .receivedWatchData, object: nil, userInfo: ["data": data])
-            }
+        if let data = message as? [String: Double] {
+            // Post a notification to update the ContentView
+            NotificationCenter.default.post(name: .receivedWatchData, object: nil, userInfo: ["data": data])
         }
-
-    // Add other necessary WCSessionDelegate methods if needed
+    }
 }
 
 extension Notification.Name {

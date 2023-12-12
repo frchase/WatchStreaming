@@ -11,8 +11,8 @@ import WatchConnectivity
 struct ContentView: View {
     @State private var receivedData: [String: Double] = [:]
     var body: some View {
+        /// Display the received data on the iPhone's ContentView
         VStack {
-            // Display the received data on the iPhone's ContentView
             Text("Received Data:")
                 .font(.headline)
                 .padding()

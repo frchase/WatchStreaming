@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		947C07702B180799002C8A3C /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947C076F2B180799002C8A3C /* Model.swift */; };
+		9482A7672B291617006AA9C3 /* DataDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9482A7662B291617006AA9C3 /* DataDisplayView.swift */; };
 		94AAAEDD2B17B90700858620 /* WatchDataStreamingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AAAEDC2B17B90700858620 /* WatchDataStreamingApp.swift */; };
 		94AAAEDF2B17B90700858620 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AAAEDE2B17B90700858620 /* ContentView.swift */; };
 		94AAAEE12B17B90800858620 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94AAAEE02B17B90800858620 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		947C076F2B180799002C8A3C /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		9482A7662B291617006AA9C3 /* DataDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDisplayView.swift; sourceTree = "<group>"; };
 		94AAAED92B17B90700858620 /* WatchDataStreaming.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchDataStreaming.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94AAAEDC2B17B90700858620 /* WatchDataStreamingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchDataStreamingApp.swift; sourceTree = "<group>"; };
 		94AAAEDE2B17B90700858620 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				94AAAF002B17B95100858620 /* SensorLog.swift */,
 				94AAAF022B17CF4C00858620 /* WatchConnect.swift */,
 				947C076F2B180799002C8A3C /* Model.swift */,
+				9482A7662B291617006AA9C3 /* DataDisplayView.swift */,
 			);
 			path = "WatchDataStreaming Watch App";
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				94AAAEF12B17B90800858620 /* ContentView.swift in Sources */,
 				94AAAF032B17CF4C00858620 /* WatchConnect.swift in Sources */,
 				94AAAEEF2B17B90800858620 /* WatchDataStreamingApp.swift in Sources */,
+				9482A7672B291617006AA9C3 /* DataDisplayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
