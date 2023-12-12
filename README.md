@@ -1,2 +1,2 @@
-# WatchStreaming
-For testing our watch data streaming
+# iOS-Neuro-Mapping
+This is all of the code that we have contributed to the client project for comp 523 iOS Neuro-mapping app. The Kalman filter code we wrote was integrated into the functions that our client had already written. The watch-data-streaming portion is designed to be integrated to another level of filtering and currently functions to continuously update the connected iPhone with the necessary data. The two portions of code were developed have been integrated into the codebase we were given and debugged. 
